@@ -7,17 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		72B92BC518DDFE2E00526118 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72B92BC418DDFE2E00526118 /* Cocoa.framework */; };
+		7210135F18DF27D3005C08C6 /* MDAudioManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7210135E18DF27D3005C08C6 /* MDAudioManager.mm */; };
+		725E0B6A18E2E3BF00A66989 /* MDEqMeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 725E0B6918E2E3BF00A66989 /* MDEqMeterView.m */; };
+		725E0B6F18E30A1000A66989 /* libfmodex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 725E0B6B18E30A0000A66989 /* libfmodex.dylib */; };
+		725E0B7018E30A1000A66989 /* libfmodexL.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 725E0B6C18E30A0000A66989 /* libfmodexL.dylib */; };
 		72B92BCF18DDFE2E00526118 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 72B92BCD18DDFE2E00526118 /* InfoPlist.strings */; };
 		72B92BD118DDFE2E00526118 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B92BD018DDFE2E00526118 /* main.m */; };
 		72B92BD518DDFE2E00526118 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 72B92BD318DDFE2E00526118 /* Credits.rtf */; };
-		72B92BD818DDFE2E00526118 /* MDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B92BD718DDFE2E00526118 /* MDAppDelegate.m */; };
+		72B92BD818DDFE2E00526118 /* MDAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 72B92BD718DDFE2E00526118 /* MDAppDelegate.mm */; };
 		72B92BDB18DDFE2E00526118 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72B92BD918DDFE2E00526118 /* MainMenu.xib */; };
 		72B92BDD18DDFE2E00526118 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72B92BDC18DDFE2E00526118 /* Images.xcassets */; };
 		72B92BE418DDFE2F00526118 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72B92BE318DDFE2F00526118 /* XCTest.framework */; };
 		72B92BE518DDFE2F00526118 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72B92BC418DDFE2E00526118 /* Cocoa.framework */; };
 		72B92BED18DDFE2F00526118 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 72B92BEB18DDFE2F00526118 /* InfoPlist.strings */; };
 		72B92BEF18DDFE2F00526118 /* ModestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B92BEE18DDFE2F00526118 /* ModestTests.m */; };
+		72B92BFD18DE086C00526118 /* libfmod.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 72B92BF818DE083E00526118 /* libfmod.dylib */; };
+		72B92BFE18DE086C00526118 /* libfmodL.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 72B92BF918DE083E00526118 /* libfmodL.dylib */; };
+		72B92C0918DE0F2300526118 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72B92BC418DDFE2E00526118 /* Cocoa.framework */; };
+		72CB094118EAD0A000870B48 /* MDSongsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CB094018EAD0A000870B48 /* MDSongsTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +37,29 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		72B92BFC18DE085C00526118 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				725E0B6F18E30A1000A66989 /* libfmodex.dylib in CopyFiles */,
+				725E0B7018E30A1000A66989 /* libfmodexL.dylib in CopyFiles */,
+				72B92BFD18DE086C00526118 /* libfmod.dylib in CopyFiles */,
+				72B92BFE18DE086C00526118 /* libfmodL.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		7210135D18DF27D3005C08C6 /* MDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDAudioManager.h; sourceTree = "<group>"; };
+		7210135E18DF27D3005C08C6 /* MDAudioManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MDAudioManager.mm; sourceTree = "<group>"; };
+		725E0B6818E2E3BF00A66989 /* MDEqMeterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDEqMeterView.h; sourceTree = "<group>"; };
+		725E0B6918E2E3BF00A66989 /* MDEqMeterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDEqMeterView.m; sourceTree = "<group>"; };
+		725E0B6B18E30A0000A66989 /* libfmodex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmodex.dylib; sourceTree = "<group>"; };
+		725E0B6C18E30A0000A66989 /* libfmodexL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmodexL.dylib; sourceTree = "<group>"; };
 		72B92BC118DDFE2E00526118 /* Modest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Modest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72B92BC418DDFE2E00526118 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		72B92BC718DDFE2E00526118 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -42,7 +71,7 @@
 		72B92BD218DDFE2E00526118 /* Modest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Modest-Prefix.pch"; sourceTree = "<group>"; };
 		72B92BD418DDFE2E00526118 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		72B92BD618DDFE2E00526118 /* MDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDAppDelegate.h; sourceTree = "<group>"; };
-		72B92BD718DDFE2E00526118 /* MDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDAppDelegate.m; sourceTree = "<group>"; };
+		72B92BD718DDFE2E00526118 /* MDAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MDAppDelegate.mm; sourceTree = "<group>"; };
 		72B92BDA18DDFE2E00526118 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		72B92BDC18DDFE2E00526118 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		72B92BE218DDFE2F00526118 /* ModestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +79,16 @@
 		72B92BEA18DDFE2F00526118 /* ModestTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ModestTests-Info.plist"; sourceTree = "<group>"; };
 		72B92BEC18DDFE2F00526118 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		72B92BEE18DDFE2F00526118 /* ModestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModestTests.m; sourceTree = "<group>"; };
+		72B92BF818DE083E00526118 /* libfmod.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmod.dylib; sourceTree = "<group>"; };
+		72B92BF918DE083E00526118 /* libfmodL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmodL.dylib; sourceTree = "<group>"; };
+		72B92C0018DE089000526118 /* fmod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod.h; sourceTree = "<group>"; };
+		72B92C0118DE089000526118 /* fmod.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fmod.hpp; sourceTree = "<group>"; };
+		72B92C0218DE089000526118 /* fmod_codec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod_codec.h; sourceTree = "<group>"; };
+		72B92C0418DE089000526118 /* fmod_dsp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod_dsp.h; sourceTree = "<group>"; };
+		72B92C0518DE089000526118 /* fmod_errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod_errors.h; sourceTree = "<group>"; };
+		72B92C0618DE089000526118 /* fmod_output.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod_output.h; sourceTree = "<group>"; };
+		72CB093F18EAD0A000870B48 /* MDSongsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDSongsTableView.h; sourceTree = "<group>"; };
+		72CB094018EAD0A000870B48 /* MDSongsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSongsTableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72B92BC518DDFE2E00526118 /* Cocoa.framework in Frameworks */,
+				72B92C0918DE0F2300526118 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +115,10 @@
 		72B92BB818DDFE2E00526118 = {
 			isa = PBXGroup;
 			children = (
+				725E0B6B18E30A0000A66989 /* libfmodex.dylib */,
+				725E0B6C18E30A0000A66989 /* libfmodexL.dylib */,
+				72B92BF818DE083E00526118 /* libfmod.dylib */,
+				72B92BF918DE083E00526118 /* libfmodL.dylib */,
 				72B92BCA18DDFE2E00526118 /* Modest */,
 				72B92BE818DDFE2F00526118 /* ModestTests */,
 				72B92BC318DDFE2E00526118 /* Frameworks */,
@@ -115,9 +158,16 @@
 		72B92BCA18DDFE2E00526118 /* Modest */ = {
 			isa = PBXGroup;
 			children = (
+				72B92BFF18DE089000526118 /* inc */,
 				72B92BD618DDFE2E00526118 /* MDAppDelegate.h */,
-				72B92BD718DDFE2E00526118 /* MDAppDelegate.m */,
+				72B92BD718DDFE2E00526118 /* MDAppDelegate.mm */,
+				72CB093F18EAD0A000870B48 /* MDSongsTableView.h */,
+				72CB094018EAD0A000870B48 /* MDSongsTableView.m */,
+				7210135D18DF27D3005C08C6 /* MDAudioManager.h */,
+				7210135E18DF27D3005C08C6 /* MDAudioManager.mm */,
 				72B92BD918DDFE2E00526118 /* MainMenu.xib */,
+				725E0B6818E2E3BF00A66989 /* MDEqMeterView.h */,
+				725E0B6918E2E3BF00A66989 /* MDEqMeterView.m */,
 				72B92BDC18DDFE2E00526118 /* Images.xcassets */,
 				72B92BCB18DDFE2E00526118 /* Supporting Files */,
 			);
@@ -154,6 +204,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		72B92BFF18DE089000526118 /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				72B92C0018DE089000526118 /* fmod.h */,
+				72B92C0118DE089000526118 /* fmod.hpp */,
+				72B92C0218DE089000526118 /* fmod_codec.h */,
+				72B92C0418DE089000526118 /* fmod_dsp.h */,
+				72B92C0518DE089000526118 /* fmod_errors.h */,
+				72B92C0618DE089000526118 /* fmod_output.h */,
+			);
+			path = inc;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -164,6 +227,8 @@
 				72B92BBD18DDFE2E00526118 /* Sources */,
 				72B92BBE18DDFE2E00526118 /* Frameworks */,
 				72B92BBF18DDFE2E00526118 /* Resources */,
+				72B92BFC18DE085C00526118 /* CopyFiles */,
+				725E0B7118E30CBC00A66989 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -248,13 +313,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		725E0B7118E30CBC00A66989 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "install_name_tool -id @executable_path/../Frameworks/libfmodexL.dylib \"$SRCROOT/libfmodexL.dylib\"\ninstall_name_tool -id @executable_path/../Frameworks/libfmodex.dylib \"$SRCROOT/libfmodex.dylib\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		72B92BBD18DDFE2E00526118 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				72B92BD118DDFE2E00526118 /* main.m in Sources */,
-				72B92BD818DDFE2E00526118 /* MDAppDelegate.m in Sources */,
+				72CB094118EAD0A000870B48 /* MDSongsTableView.m in Sources */,
+				725E0B6A18E2E3BF00A66989 /* MDEqMeterView.m in Sources */,
+				72B92BD818DDFE2E00526118 /* MDAppDelegate.mm in Sources */,
+				7210135F18DF27D3005C08C6 /* MDAudioManager.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,11 +469,20 @@
 		72B92BF318DDFE2F00526118 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Modest/Modest-Prefix.pch";
 				INFOPLIST_FILE = "Modest/Modest-Info.plist";
+				LD_DYLIB_INSTALL_NAME = "";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = libfmodexL.dylib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -398,11 +491,20 @@
 		72B92BF418DDFE2F00526118 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Modest/Modest-Prefix.pch";
 				INFOPLIST_FILE = "Modest/Modest-Info.plist";
+				LD_DYLIB_INSTALL_NAME = "";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = libfmodex.dylib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -467,6 +569,7 @@
 				72B92BF418DDFE2F00526118 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		72B92BF518DDFE2F00526118 /* Build configuration list for PBXNativeTarget "ModestTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +578,7 @@
 				72B92BF718DDFE2F00526118 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
