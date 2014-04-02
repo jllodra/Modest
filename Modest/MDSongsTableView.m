@@ -16,7 +16,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code here.
         // self.wantsLayer = YES;
     }
     return self;
@@ -50,9 +49,23 @@
     }
 }
 
+
+- (void)keyDown:(NSEvent *)theEvent {
+    // prevent beeping
+}
+
+- (void)keyUp:(NSEvent *)theEvent {
+    unichar key = [[theEvent charactersIgnoringModifiers] characterAtIndex:0];
+    if(key == NSDeleteCharacter) {
+        if((self.selectedRow != -1) && [self selectedRow] < [self.songs count]) {
+            [songs removeObjectAtIndex:self.selectedRow];
+            [self reloadData];
+        }
+    }
+    [super keyUp:theEvent];
+}
+
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    //NSLog(@"Number of rows..");
-    //printf("%lu\n", [songs count]);
     return [songs count];
 }
 
@@ -65,12 +78,10 @@
     if([identifier isEqualToString:@"File"]) {
         NSTableCellView *cellView = [tableView makeViewWithIdentifier:identifier owner:self];
         cellView.textField.stringValue = [[songs objectAtIndex:row] objectForKey:@"filename"];
-        //cellView.textField.stringValue = @"NO ME FOTIS";
         return cellView;
     } else if ([identifier isEqualToString:@"Song"]) {
         NSTableCellView *cellView = [tableView makeViewWithIdentifier:identifier owner:self];
         cellView.textField.stringValue = [[songs objectAtIndex:row] objectForKey:@"songname"];
-        //cellView.textField.stringValue = @"CAGONTOT";
         return cellView;
     } else {
         NSAssert1(NO, @"Unhandled table column identifier %@", identifier);

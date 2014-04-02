@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CA1ADEA5-6231-48A7-9896-C083477AF88F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Modest</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8512928E-3FAF-4691-B8F3-914840E0F9C4</key>
+		<string>ssh://github.com/jllodra/Modest.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Modest.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8512928E-3FAF-4691-B8F3-914840E0F9C4</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/jllodra/Modest.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8512928E-3FAF-4691-B8F3-914840E0F9C4</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8512928E-3FAF-4691-B8F3-914840E0F9C4</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Modest</string>
+		</dict>
+	</array>
+</dict>
+</plist>
