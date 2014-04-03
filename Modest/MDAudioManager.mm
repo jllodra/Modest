@@ -42,6 +42,7 @@
         spec = new float[sampleSize];
         specLeft = new float[sampleSize];
         specRight = new float[sampleSize];
+        float maxpow;
 
         NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
         [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
@@ -66,11 +67,16 @@
                 channel->getSpectrum(specRight, sampleSize, 1, FMOD_DSP_FFT_WINDOW_RECT);
 
                 //NSMutableArray *spectrum = [[NSMutableArray alloc] initWithCapacity:65];
+                maxpow = 0;
                 for (int i = 0; i < sampleSize; i++) {
                     spec[i] = (specLeft[i] + specRight[i]) / 2;
+                    maxpow = (spec[i] > maxpow) ? spec[i] : maxpow;
                     //[spectrum addObject:[NSNumber numberWithFloat:spec[i]]];
                 }
-                
+                for (int i = 0; i < sampleSize; i++) {
+                    spec[i] = spec[i] / maxpow;
+                }
+                //printf("%f\n",avgpow);
                 //printf("%f\n", spec[0]);
                 //float red = spec[0];
                 //float green = spec[0];

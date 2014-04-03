@@ -29,6 +29,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    ((NSView *)self.window.contentView).wantsLayer = YES;
     // audio thread
     audioManager = [[MDAudioManager alloc] init];
     audioManagerThread = [[NSThread alloc] initWithTarget:audioManager

@@ -40,7 +40,10 @@
         CGContextSetFillColorWithColor(context, [NSColor orangeColor].CGColor);
 
         for (int i = 0; i < 64; i++) {
-            CGRect rectangle = CGRectMake(2+i*([self frame].size.width/64), -1, 2, MIN(sf[i]*1480, [self frame].size.height));
+            //CGRect rectangle = CGRectMake(2+i*([self frame].size.width/64), -1, 2, sf[i]*[self frame].size.height);
+            CGRect rectangle = CGRectMake(2+i*([self frame].size.width/64), -1, 2, MIN(sf[i]*2/*scale*/*[self frame].size.height, [self frame].size.height));
+
+            //CGRect rectangle = CGRectMake(2+i*([self frame].size.width/64), -1, 2, MIN(sf[i]*1480, [self frame].size.height));
             
             CGContextAddRect(context, rectangle);
             
