@@ -22,7 +22,6 @@
 }
 
 - (void)awakeFromNib {
-    NSLog(@"AFAKE FROM NIB");
     peak = (float*)malloc(sizeof(float)*64);
     memset(peak, 0, sizeof(float)*64);
 }

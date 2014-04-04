@@ -57,8 +57,14 @@
     }
 }
 
-- (IBAction)playButton:(NSButton *)sender {
-    [audioManager performSelector:@selector(play) onThread:audioManagerThread withObject:nil waitUntilDone:NO];
+- (IBAction)playPauseButton:(NSButton *)sender {
+    bool isPlaying = [[[audioManagerThread threadDictionary] valueForKey:@"isPlaying"] boolValue];
+    
+    if(isPlaying) {
+        [audioManager performSelector:@selector(pause) onThread:audioManagerThread withObject:nil waitUntilDone:NO];
+    } else {
+        [audioManager performSelector:@selector(play) onThread:audioManagerThread withObject:nil waitUntilDone:NO];
+    }
 }
 
 - (IBAction)pauseButton:(NSButton *)sender {
@@ -78,7 +84,6 @@
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
     [[audioManagerThread threadDictionary] setValue:[NSNumber numberWithBool:YES] forKey:@"exitNow"];
-    
 }
 
 @end

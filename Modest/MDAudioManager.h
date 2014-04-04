@@ -13,6 +13,8 @@
     //FMOD::System *system;
 }
 
+@property (strong) NSMutableDictionary *threadDict;
+
 - (void)setUp:(MDAppDelegate*)appDelegate;
 - (void)loadSong:(NSURL*)file;
 - (void)loadSongAndPlay:(NSURL*)file;

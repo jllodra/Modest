@@ -24,6 +24,7 @@
 @end
 
 @implementation MDAudioManager
+@synthesize threadDict;
 
 - (void)setUp:(MDAppDelegate*)appDelegate
 {
@@ -47,9 +48,10 @@
         NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
         [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
         
-        NSMutableDictionary* threadDict = [[NSThread currentThread] threadDictionary];
+        threadDict = [[NSThread currentThread] threadDictionary];
         [threadDict setValue:[NSNumber numberWithBool:exitNow] forKey:@"exitNow"];
-        
+        [threadDict setValue:[NSNumber numberWithBool:NO] forKey:@"isPlaying"];
+
         [self initFMOD];
         
         do {
@@ -100,6 +102,8 @@
         sound->release();
         system->release();
         
+        [[self threadDict] setValue:NULL];
+        
         NSLog(@"Audio Manager Thread exiting");
     }
 }
@@ -130,6 +134,7 @@
     
     channel->stop();
     sound->release();
+    [threadDict setValue:[NSNumber numberWithBool:NO] forKey:@"isPlaying"];
 
     system->createSound([[file path] UTF8String], FMOD_DEFAULT, 0, &sound);
 }
@@ -140,10 +145,12 @@
     
     channel->stop();
     sound->release();
+    [threadDict setValue:[NSNumber numberWithBool:NO] forKey:@"isPlaying"];
    
     //system->createSound([[file path] UTF8String], FMOD_DEFAULT | FMOD_SOFTWARE, 0, &sound);
     system->createSound([[file path] UTF8String], FMOD_DEFAULT, 0, &sound);
     system->playSound(FMOD_CHANNEL_FREE, sound, false, &channel);
+    [threadDict setValue:[NSNumber numberWithBool:YES] forKey:@"isPlaying"];
 
     char name[100];
     sound->getName(name, 100);
@@ -181,18 +188,21 @@
     } else {
         system->playSound(FMOD_CHANNEL_FREE, sound, false, &channel);
     }
+    [threadDict setValue:[NSNumber numberWithBool:YES] forKey:@"isPlaying"];
 }
 
 - (void)stop
 {
     NSLog(@"stop");
     channel->stop();
+    [threadDict setValue:[NSNumber numberWithBool:NO] forKey:@"isPlaying"];
 }
 
 - (void)pause
 {
     NSLog(@"pause");
     channel->setPaused(true);
+    [threadDict setValue:[NSNumber numberWithBool:NO] forKey:@"isPlaying"];
 }
 
 @end
