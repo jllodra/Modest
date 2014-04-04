@@ -18,6 +18,7 @@
 @property (weak) IBOutlet MDEqMeterView *eqMeterView;
 @property (weak) IBOutlet MDSongsTableView *songsTableView;
 @property (weak) IBOutlet NSTextField *statusText;
+@property (weak) IBOutlet NSButton *playPauseButton;
 
 - (void)playSong:(NSURL*)fileNSUrl;
 

@@ -48,7 +48,7 @@
             if(sf[i] > peak[i]) {
                 peak[i] = sf[i];
             } else {
-                peak[i] = peak[i] - 0.018;
+                peak[i] = peak[i] - 0.02;
             }
             CGRect peakrect = CGRectMake(
                                           2+i*([self frame].size.width/64),

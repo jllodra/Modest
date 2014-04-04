@@ -20,6 +20,7 @@
 @synthesize eqMeterView;
 @synthesize songsTableView;
 @synthesize statusText;
+@synthesize playPauseButton;
 
 - (id)init {
     self = [super init];
@@ -52,7 +53,13 @@
         for(int i = 0; i < [files count]; i++) {
             NSURL *fileNSUrl = [files objectAtIndex:i];
             [statusText setStringValue:[fileNSUrl path]];
-            [audioManager performSelector:@selector(loadSongAndPlay:) onThread:audioManagerThread withObject:fileNSUrl waitUntilDone:NO];
+            [audioManager performSelector:@selector(loadSongAndPlay:) onThread:audioManagerThread withObject:fileNSUrl waitUntilDone:YES];
+            bool isPlaying = [[[audioManagerThread threadDictionary] valueForKey:@"isPlaying"] boolValue];
+            if(isPlaying) {
+                self.playPauseButton.title = @"Pause";
+            } else {
+                self.playPauseButton.title = @"Play";
+            }
         }
     }
 }
@@ -62,8 +69,10 @@
     
     if(isPlaying) {
         [audioManager performSelector:@selector(pause) onThread:audioManagerThread withObject:nil waitUntilDone:NO];
+        self.playPauseButton.title = @"Play";
     } else {
         [audioManager performSelector:@selector(play) onThread:audioManagerThread withObject:nil waitUntilDone:NO];
+        self.playPauseButton.title = @"Pause";
     }
 }
 
@@ -73,12 +82,14 @@
 
 - (IBAction)stopButton:(NSButton *)sender {
     [audioManager performSelector:@selector(stop) onThread:audioManagerThread withObject:nil waitUntilDone:NO];
+    self.playPauseButton.title = @"Play";
 }
 
 - (void)playSong:(NSURL*)fileNSUrl {
     [audioManager performSelector:@selector(loadSong:) onThread:audioManagerThread withObject:fileNSUrl waitUntilDone:YES];
     [audioManager performSelector:@selector(play) onThread:audioManagerThread withObject:nil waitUntilDone:NO];
     [statusText setStringValue:[fileNSUrl path]];
+    self.playPauseButton.title = @"Pause";
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notification

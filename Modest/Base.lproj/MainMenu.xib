@@ -15,6 +15,7 @@
         <customObject id="Voe-Tx-rLC" customClass="MDAppDelegate">
             <connections>
                 <outlet property="eqMeterView" destination="bic-8m-sfP" id="wKT-t2-OLF"/>
+                <outlet property="playPauseButton" destination="eF2-JC-e8L" id="JkD-St-bwr"/>
                 <outlet property="songsTableView" destination="UQ6-AP-bbb" id="qz4-43-Kin"/>
                 <outlet property="statusText" destination="5nP-K4-IXa" id="f4x-Ap-uqf"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
@@ -686,10 +687,8 @@ CA
                     <button id="eF2-JC-e8L">
                         <rect key="frame" x="20" y="31" width="48" height="48"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ud1-w1-nEv">
+                        <buttonCell key="cell" type="square" title="Play" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ud1-w1-nEv">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <string key="title">Play
-Pause</string>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
