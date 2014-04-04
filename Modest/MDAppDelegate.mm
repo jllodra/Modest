@@ -53,7 +53,7 @@
         for(int i = 0; i < [files count]; i++) {
             NSURL *fileNSUrl = [files objectAtIndex:i];
             [statusText setStringValue:[fileNSUrl path]];
-            [audioManager performSelector:@selector(loadSongAndPlay:) onThread:audioManagerThread withObject:fileNSUrl waitUntilDone:YES];
+            [audioManager performSelector:@selector(loadSongAndPlay:) onThread:audioManagerThread withObject:fileNSUrl waitUntilDone:NO];
             bool isPlaying = [[[audioManagerThread threadDictionary] valueForKey:@"isPlaying"] boolValue];
             if(isPlaying) {
                 self.playPauseButton.title = @"Pause";

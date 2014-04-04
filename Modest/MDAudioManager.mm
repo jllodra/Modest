@@ -157,7 +157,7 @@
     NSString *songname = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
     [delegate.songsTableView addSong:file songName:songname];
     
-    FMOD_TAG tag;
+    /*FMOD_TAG tag;
     int numtags, numtagsupdated, count;
     
     sound->getNumTags(&numtags, &numtagsupdated);
@@ -174,7 +174,7 @@
             
             printf("%s = binary (%d bytes)\n", tag.name, tag.datalen);
         }
-    }
+    }*/
 }
 
 
