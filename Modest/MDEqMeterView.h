@@ -10,6 +10,7 @@
 
 @interface MDEqMeterView : NSView {
     float *sf;
+    float *peak;
 }
 
 - (void) setS:(float*)spec;

@@ -21,6 +21,12 @@
     return self;
 }
 
+- (void)awakeFromNib {
+    NSLog(@"AFAKE FROM NIB");
+    peak = (float*)malloc(sizeof(float)*64);
+    memset(peak, 0, sizeof(float)*64);
+}
+
 - (void) setS:(float*)spec {
     sf = spec;
 }
@@ -40,16 +46,36 @@
         CGContextSetFillColorWithColor(context, [NSColor orangeColor].CGColor);
 
         for (int i = 0; i < 64; i++) {
+            if(sf[i] > peak[i]) {
+                peak[i] = sf[i];
+            } else {
+                peak[i] = peak[i] - 0.018;
+            }
+            CGRect peakrect = CGRectMake(
+                                          2+i*([self frame].size.width/64),
+                                          MIN(peak[i]*2/*scale*/*[self frame].size.height, [self frame].size.height)-2,
+                                          2,
+                                          1
+                                          );
+            CGRect bar = CGRectMake(
+                                    2+i*([self frame].size.width/64),
+                                    -1,
+                                    2,
+                                    MIN(sf[i]*2/*scale*/*[self frame].size.height, [self frame].size.height)
+                                    );
+
+            
             //CGRect rectangle = CGRectMake(2+i*([self frame].size.width/64), -1, 2, sf[i]*[self frame].size.height);
-            CGRect rectangle = CGRectMake(2+i*([self frame].size.width/64), -1, 2, MIN(sf[i]*2/*scale*/*[self frame].size.height, [self frame].size.height));
 
             //CGRect rectangle = CGRectMake(2+i*([self frame].size.width/64), -1, 2, MIN(sf[i]*1480, [self frame].size.height));
             
-            CGContextAddRect(context, rectangle);
-            
-            //CGContextStrokePath(context);
-            CGContextFillRect(context, rectangle);
-            CGContextStrokeRect(context, rectangle);
+            CGContextAddRect(context, bar);
+            CGContextFillRect(context, bar);
+            CGContextStrokeRect(context, bar);
+
+            CGContextAddRect(context, peakrect);
+            CGContextFillRect(context, peakrect);
+            CGContextStrokeRect(context, peakrect);
         }
     }
     
