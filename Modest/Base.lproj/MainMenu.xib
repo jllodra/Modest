@@ -844,6 +844,9 @@ CA
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="infoButton:" target="Voe-Tx-rLC" id="21t-YW-rRb"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>

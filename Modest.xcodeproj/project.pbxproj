@@ -24,6 +24,8 @@
 		72B92BFD18DE086C00526118 /* libfmod.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 72B92BF818DE083E00526118 /* libfmod.dylib */; };
 		72B92BFE18DE086C00526118 /* libfmodL.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 72B92BF918DE083E00526118 /* libfmodL.dylib */; };
 		72B92C0918DE0F2300526118 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72B92BC418DDFE2E00526118 /* Cocoa.framework */; };
+		72C20A4F18EF868C001F0E38 /* Info.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72C20A4E18EF868C001F0E38 /* Info.xib */; };
+		72C20A5218EF8EFC001F0E38 /* MDInfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C20A5118EF8EFC001F0E38 /* MDInfoWindowController.m */; };
 		72CB094118EAD0A000870B48 /* MDSongsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CB094018EAD0A000870B48 /* MDSongsTableView.m */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +89,9 @@
 		72B92C0418DE089000526118 /* fmod_dsp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod_dsp.h; sourceTree = "<group>"; };
 		72B92C0518DE089000526118 /* fmod_errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod_errors.h; sourceTree = "<group>"; };
 		72B92C0618DE089000526118 /* fmod_output.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod_output.h; sourceTree = "<group>"; };
+		72C20A4E18EF868C001F0E38 /* Info.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Info.xib; sourceTree = "<group>"; };
+		72C20A5018EF8EFC001F0E38 /* MDInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDInfoWindowController.h; sourceTree = "<group>"; };
+		72C20A5118EF8EFC001F0E38 /* MDInfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDInfoWindowController.m; sourceTree = "<group>"; };
 		72CB093F18EAD0A000870B48 /* MDSongsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDSongsTableView.h; sourceTree = "<group>"; };
 		72CB094018EAD0A000870B48 /* MDSongsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSongsTableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,6 +175,9 @@
 				725E0B6918E2E3BF00A66989 /* MDEqMeterView.m */,
 				72B92BDC18DDFE2E00526118 /* Images.xcassets */,
 				72B92BCB18DDFE2E00526118 /* Supporting Files */,
+				72C20A4E18EF868C001F0E38 /* Info.xib */,
+				72C20A5018EF8EFC001F0E38 /* MDInfoWindowController.h */,
+				72C20A5118EF8EFC001F0E38 /* MDInfoWindowController.m */,
 			);
 			path = Modest;
 			sourceTree = "<group>";
@@ -297,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72B92BCF18DDFE2E00526118 /* InfoPlist.strings in Resources */,
+				72C20A4F18EF868C001F0E38 /* Info.xib in Resources */,
 				72B92BDD18DDFE2E00526118 /* Images.xcassets in Resources */,
 				72B92BD518DDFE2E00526118 /* Credits.rtf in Resources */,
 				72B92BDB18DDFE2E00526118 /* MainMenu.xib in Resources */,
@@ -338,6 +347,7 @@
 				72CB094118EAD0A000870B48 /* MDSongsTableView.m in Sources */,
 				725E0B6A18E2E3BF00A66989 /* MDEqMeterView.m in Sources */,
 				72B92BD818DDFE2E00526118 /* MDAppDelegate.mm in Sources */,
+				72C20A5218EF8EFC001F0E38 /* MDInfoWindowController.m in Sources */,
 				7210135F18DF27D3005C08C6 /* MDAudioManager.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

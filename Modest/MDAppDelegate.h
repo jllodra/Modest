@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "MDEqMeterView.h"
 #import "MDSongsTableView.h"
+#import "MDInfoWindowController.h"
 
 @interface MDAppDelegate : NSObject <NSApplicationDelegate> {
     __weak MDEqMeterView *eqMeterView;
@@ -19,6 +20,7 @@
 @property (weak) IBOutlet MDSongsTableView *songsTableView;
 @property (weak) IBOutlet NSTextField *statusText;
 @property (weak) IBOutlet NSButton *playPauseButton;
+@property (strong) MDInfoWindowController *infoWindowController;
 
 - (void)playSong:(NSURL*)fileNSUrl;
 

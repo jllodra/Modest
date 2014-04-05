@@ -21,6 +21,7 @@
 @synthesize songsTableView;
 @synthesize statusText;
 @synthesize playPauseButton;
+@synthesize infoWindowController;
 
 - (id)init {
     self = [super init];
@@ -76,13 +77,22 @@
     }
 }
 
-- (IBAction)pauseButton:(NSButton *)sender {
-    [audioManager performSelector:@selector(pause) onThread:audioManagerThread withObject:nil waitUntilDone:NO];
-}
-
 - (IBAction)stopButton:(NSButton *)sender {
     [audioManager performSelector:@selector(stop) onThread:audioManagerThread withObject:nil waitUntilDone:NO];
     self.playPauseButton.title = @"Play";
+}
+
+- (IBAction)infoButton:(NSButton *)sender {
+    if (self.infoWindowController == nil) {
+        self.infoWindowController = [[MDInfoWindowController alloc] initWithWindowNibName:@"Info"];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_infoWindowWillClose) name:NSWindowWillCloseNotification object:nil];
+    }
+    [self.infoWindowController showWindow:sender];
+}
+
+- (void)_infoWindowWillClose {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:nil];
+     self.infoWindowController = nil;
 }
 
 - (void)playSong:(NSURL*)fileNSUrl {
@@ -95,6 +105,18 @@
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
     [[audioManagerThread threadDictionary] setValue:[NSNumber numberWithBool:YES] forKey:@"exitNow"];
+}
+
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
+{
+    if ( flag ) {
+        [self.window orderFront:self];
+    }
+    else {
+        [self.window makeKeyAndOrderFront:self];
+    }
+    
+    return YES;
 }
 
 @end
