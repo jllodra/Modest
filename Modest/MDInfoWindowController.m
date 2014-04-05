@@ -18,7 +18,7 @@
 {
     self = [super initWithWindow:window];
     if (self) {
-        [[self window] setReleasedWhenClosed:NO];
+
     }
     return self;
 }
