@@ -8,8 +8,6 @@
 
 #import "MDEqMeterView.h"
 
-// #define MAX(x,y) (((x) < (y)) ? (y) : (x))
-
 @implementation MDEqMeterView
 
 - (id)initWithFrame:(NSRect)frame
@@ -34,10 +32,6 @@
 {
     [super drawRect:dirtyRect];
     
-    // Drawing code here.
-    // [color set];
-    // NSRectFill(dirtyRect);
-
     if(sf != NULL) {
         CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
         CGContextSetLineWidth(context, 1.0);
@@ -45,11 +39,8 @@
         CGContextSetFillColorWithColor(context, [NSColor orangeColor].CGColor);
 
         for (int i = 0; i < 64; i++) {
-            if(sf[i] > peak[i]) {
-                peak[i] = sf[i];
-            } else {
-                peak[i] = peak[i] - 0.02;
-            }
+            peak[i] = (sf[i] > peak[i]) ? sf[i] : peak[i] - 0.02;
+
             CGRect peakrect = CGRectMake(
                                           2+i*([self frame].size.width/64),
                                           MIN(peak[i]*2/*scale*/*[self frame].size.height, [self frame].size.height)-2,
@@ -63,11 +54,6 @@
                                     MIN(sf[i]*2/*scale*/*[self frame].size.height, [self frame].size.height)
                                     );
 
-            
-            //CGRect rectangle = CGRectMake(2+i*([self frame].size.width/64), -1, 2, sf[i]*[self frame].size.height);
-
-            //CGRect rectangle = CGRectMake(2+i*([self frame].size.width/64), -1, 2, MIN(sf[i]*1480, [self frame].size.height));
-            
             CGContextAddRect(context, bar);
             CGContextFillRect(context, bar);
             CGContextStrokeRect(context, bar);
