@@ -51,6 +51,7 @@
         threadDict = [[NSThread currentThread] threadDictionary];
         [threadDict setValue:[NSNumber numberWithBool:exitNow] forKey:@"exitNow"];
         [threadDict setValue:[NSNumber numberWithBool:NO] forKey:@"isPlaying"];
+        [threadDict setValue:@"" forKey:@"infoText"];
 
         [self initFMOD];
         
@@ -137,6 +138,8 @@
     [threadDict setValue:[NSNumber numberWithBool:NO] forKey:@"isPlaying"];
 
     system->createSound([[file path] UTF8String], FMOD_DEFAULT, 0, &sound);
+    
+    [self readInfo];
 }
 
 - (void)loadSongAndPlay:(NSURL*)file
@@ -154,27 +157,10 @@
 
     char name[100];
     sound->getName(name, 100);
-    NSString *songname = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
+    NSString *songname = [NSString stringWithCString:name encoding:NSASCIIStringEncoding];
     [delegate.songsTableView addSong:file songName:songname];
     
-    /*FMOD_TAG tag;
-    int numtags, numtagsupdated, count;
-    
-    sound->getNumTags(&numtags, &numtagsupdated);
-    
-    for (count=0; count < numtags; count++) {
-        sound->getTag(0, count, &tag);
-        if (tag.datatype == FMOD_TAGDATATYPE_STRING)
-        {
-            printf("%s = %s (%d bytes)\n", tag.name, tag.data, tag.datalen);
-        }
-        else if (tag.datatype == FMOD_TAGDATATYPE_INT) {
-            printf("%s = %02d", tag.name, ((unsigned int *)tag.data)[0]);
-        } else {
-            
-            printf("%s = binary (%d bytes)\n", tag.name, tag.datalen);
-        }
-    }*/
+    [self readInfo];
 }
 
 
@@ -203,6 +189,36 @@
     NSLog(@"pause");
     channel->setPaused(true);
     [threadDict setValue:[NSNumber numberWithBool:NO] forKey:@"isPlaying"];
+}
+
+- (void)readInfo {
+    int numtags, numtagsupdated, count;
+    FMOD_TAG tag;
+    NSString *info = @"";
+    char *tagLine;
+    
+    sound->getNumTags(&numtags, &numtagsupdated);
+     
+    for (count=0; count < numtags; count++) {
+        sound->getTag(0, count, &tag);
+        if (tag.datatype == FMOD_TAGDATATYPE_STRING) {
+            if(asprintf(&tagLine, "%s = %s\n", tag.name, tag.data) >= 0) {
+                info = [info stringByAppendingString:[NSString stringWithCString:tagLine encoding:NSASCIIStringEncoding]];
+                free(tagLine);
+            }
+        } else if (tag.datatype == FMOD_TAGDATATYPE_INT) {
+            if(asprintf(&tagLine, "%s = %02d\n", tag.name, ((unsigned int *)tag.data)[0]) >= 0) {
+                info = [info stringByAppendingString:[NSString stringWithCString:tagLine encoding:NSASCIIStringEncoding]];
+                free(tagLine);
+            }
+        } else {
+            if(asprintf(&tagLine, "%s = binary (%d bytes)\n", tag.name, tag.datalen) >= 0) {
+                info = [info stringByAppendingString:[NSString stringWithCString:tagLine encoding:NSASCIIStringEncoding]];
+                free(tagLine);
+            }
+        }
+    }
+    [threadDict setValue:info forKey:@"infoText"];
 }
 
 @end

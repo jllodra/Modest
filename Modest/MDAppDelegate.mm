@@ -83,11 +83,15 @@
 }
 
 - (IBAction)infoButton:(NSButton *)sender {
-    if (self.infoWindowController == nil) {
-        self.infoWindowController = [[MDInfoWindowController alloc] initWithWindowNibName:@"Info"];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_infoWindowWillClose) name:NSWindowWillCloseNotification object:nil];
+    bool isPlaying = [[[audioManagerThread threadDictionary] valueForKey:@"isPlaying"] boolValue];
+    if(isPlaying) {
+        if (self.infoWindowController == nil) {
+            self.infoWindowController = [[MDInfoWindowController alloc] initWithWindowNibName:@"Info"];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_infoWindowWillClose) name:NSWindowWillCloseNotification object:nil];
+        }
+        [self.infoWindowController showWindow:sender];
+        [[self.infoWindowController textView] setString:[[audioManagerThread threadDictionary] valueForKey:@"infoText"]];
     }
-    [self.infoWindowController showWindow:sender];
 }
 
 - (void)_infoWindowWillClose {
@@ -109,7 +113,7 @@
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
 {
-    if ( flag ) {
+    if (flag) {
         [self.window orderFront:self];
     }
     else {
