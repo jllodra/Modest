@@ -17,8 +17,6 @@
     void            *extradriverdata;
     
     BOOL            exitNow;
-    
-    MDAppDelegate   *delegate;
 }
 
 @end
@@ -26,11 +24,11 @@
 @implementation MDAudioManager
 @synthesize threadDict;
 
-- (void)setUp:(MDAppDelegate*)appDelegate
+- (void)setUp
 {
     @autoreleasepool {
 
-        delegate = appDelegate;
+        //delegate = appDelegate;
         exitNow = NO;
         extradriverdata = NULL;
         system = NULL;
@@ -88,9 +86,9 @@
                 //NSColor* myColor = [NSColor colorWithCalibratedRed:red green:green blue:blue alpha:1.0];
 
                 //[[appDelegate eqMeterView] setSpectrum:spectrum];
-                [[appDelegate eqMeterView] setS:spec];
+                [[[NSApp delegate] eqMeterView] setS:spec];
                 //[[appDelegate eqMeterView] setColor:myColor];
-                [[appDelegate eqMeterView] setNeedsDisplay:YES];
+                [[[NSApp delegate] eqMeterView] setNeedsDisplay:YES];
             }
             exitNow = [[threadDict valueForKey:@"exitNow"] boolValue];
         } while(!exitNow);
@@ -155,11 +153,14 @@
     system->playSound(FMOD_CHANNEL_FREE, sound, false, &channel);
     [threadDict setValue:[NSNumber numberWithBool:YES] forKey:@"isPlaying"];
 
+    
     char name[100];
     sound->getName(name, 100);
     NSString *songname = [NSString stringWithCString:name encoding:NSASCIIStringEncoding];
-    [delegate.songsTableView addSong:file songName:songname];
-    
+
+    dispatch_async( dispatch_get_main_queue(), ^{
+        [[[NSApp delegate] songsTableView] addSong:file songName:songname];
+    });
     [self readInfo];
 }
 

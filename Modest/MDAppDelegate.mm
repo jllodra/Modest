@@ -35,8 +35,8 @@
     // audio thread
     audioManager = [[MDAudioManager alloc] init];
     audioManagerThread = [[NSThread alloc] initWithTarget:audioManager
-                                                 selector:@selector(setUp:)
-                                                   object:self];
+                                                 selector:@selector(setUp)
+                                                   object:nil];
     [audioManagerThread start];
     // init file picker
     openPanel = [NSOpenPanel openPanel];
@@ -54,7 +54,7 @@
         for(int i = 0; i < [files count]; i++) {
             NSURL *fileNSUrl = [files objectAtIndex:i];
             [statusText setStringValue:[fileNSUrl path]];
-            [audioManager performSelector:@selector(loadSongAndPlay:) onThread:audioManagerThread withObject:fileNSUrl waitUntilDone:NO];
+            [audioManager performSelector:@selector(loadSongAndPlay:) onThread:audioManagerThread withObject:fileNSUrl waitUntilDone:YES];
             bool isPlaying = [[[audioManagerThread threadDictionary] valueForKey:@"isPlaying"] boolValue];
             if(isPlaying) {
                 self.playPauseButton.title = @"Pause";

@@ -15,7 +15,7 @@
 
 @property (strong) NSMutableDictionary *threadDict;
 
-- (void)setUp:(MDAppDelegate*)appDelegate;
+- (void)setUp;
 - (void)loadSong:(NSURL*)file;
 - (void)loadSongAndPlay:(NSURL*)file;
 - (void)play;
