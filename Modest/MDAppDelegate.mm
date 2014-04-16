@@ -56,11 +56,7 @@
             [statusText setStringValue:[fileNSUrl path]];
             [audioManager performSelector:@selector(loadSongAndPlay:) onThread:audioManagerThread withObject:fileNSUrl waitUntilDone:YES];
             bool isPlaying = [[[audioManagerThread threadDictionary] valueForKey:@"isPlaying"] boolValue];
-            if(isPlaying) {
-                self.playPauseButton.title = @"Pause";
-            } else {
-                self.playPauseButton.title = @"Play";
-            }
+            self.playPauseButton.title = isPlaying ? @"Pause" : @"Play";
         }
     }
 }
@@ -92,6 +88,10 @@
         [self.infoWindowController showWindow:sender];
         [[self.infoWindowController textView] setString:[[audioManagerThread threadDictionary] valueForKey:@"infoText"]];
     }
+}
+- (IBAction)scenemusicButton:(NSButton *)sender {
+    [audioManager performSelector:@selector(loadScenemusicAndPlay) onThread:audioManagerThread withObject:nil waitUntilDone:NO];
+    self.playPauseButton.title = @"Pause";
 }
 
 - (void)_infoWindowWillClose {

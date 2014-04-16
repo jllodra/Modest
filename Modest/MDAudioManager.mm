@@ -7,6 +7,7 @@
 //
 
 #import "MDAudioManager.h"
+#import "MDEqMeterView.h"
 #import "fmod.hpp"
 
 @interface MDAudioManager () {
@@ -39,6 +40,7 @@
         int sampleSize = 64;
         float *spec, *specLeft, *specRight;
         spec = new float[sampleSize];
+        memset(spec, 0, sizeof(float) * sampleSize);
         specLeft = new float[sampleSize];
         specRight = new float[sampleSize];
         float maxpow;
@@ -52,57 +54,43 @@
         [threadDict setValue:@"" forKey:@"infoText"];
 
         [self initFMOD];
+
         
+        MDEqMeterView *eqView;
+        eqView = [[NSApp delegate] eqMeterView];
+        [eqView setS:spec];
+
         do {
             @autoreleasepool {
-                //[runLoop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
                 [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.055]];
             }
-            //usleep(10000);
             system->update();
-            
             channel->isPlaying(&isPlaying);
             if(isPlaying) {
-                // Get spectrum for left and right stereo channels
                 channel->getSpectrum(specLeft, sampleSize, 0, FMOD_DSP_FFT_WINDOW_RECT);
                 channel->getSpectrum(specRight, sampleSize, 1, FMOD_DSP_FFT_WINDOW_RECT);
-
-                //NSMutableArray *spectrum = [[NSMutableArray alloc] initWithCapacity:65];
                 maxpow = 0;
                 for (int i = 0; i < sampleSize; i++) {
                     spec[i] = (specLeft[i] + specRight[i]) / 2;
                     maxpow = (spec[i] > maxpow) ? spec[i] : maxpow;
-                    //[spectrum addObject:[NSNumber numberWithFloat:spec[i]]];
                 }
                 for (int i = 0; i < sampleSize; i++) {
                     spec[i] = spec[i] / maxpow;
                 }
-                //printf("%f\n",avgpow);
-                //printf("%f\n", spec[0]);
-                //float red = spec[0];
-                //float green = spec[0];
-                //float blue = spec[0];
-                
-                //NSColor* myColor = [NSColor colorWithCalibratedRed:red green:green blue:blue alpha:1.0];
-
-                //[[appDelegate eqMeterView] setSpectrum:spectrum];
-                [[[NSApp delegate] eqMeterView] setS:spec];
-                //[[appDelegate eqMeterView] setColor:myColor];
-                [[[NSApp delegate] eqMeterView] setNeedsDisplay:YES];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [eqView setNeedsDisplay:YES];
+                });
             }
+
             exitNow = [[threadDict valueForKey:@"exitNow"] boolValue];
         } while(!exitNow);
-        
         delete [] spec;
         delete [] specLeft;
         delete [] specRight;
-        
         channel->stop();
         sound->release();
         system->release();
-        
-        [[self threadDict] setValue:NULL];
-        
+        [[self threadDict] setValue:nil];
         NSLog(@"Audio Manager Thread exiting");
     }
 }
@@ -125,6 +113,10 @@
     if(system->init(1, FMOD_INIT_NORMAL, extradriverdata) != FMOD_OK) {
         NSLog(@"Error initializating FMOD");
     }
+    
+    if(system->setStreamBufferSize(64*1024, FMOD_TIMEUNIT_RAWBYTES) != FMOD_OK) {
+        NSLog(@"Error setting buffer size FMOD");
+    }
 }
 
 - (void)loadSong:(NSURL*)file
@@ -138,6 +130,34 @@
     system->createSound([[file path] UTF8String], FMOD_DEFAULT, 0, &sound);
     
     [self readInfo];
+}
+
+- (void)loadScenemusicAndPlay
+{
+    NSLog(@"loadStreamAndPlay");
+    
+    channel->stop();
+    sound->release();
+    channel = NULL;
+    FMOD_RESULT result = system->createSound("http://de.scenemusic.net/necta192.mp3", FMOD_SOFTWARE | FMOD_2D | FMOD_CREATESTREAM | FMOD_NONBLOCKING,  0, &sound);
+    if(result != FMOD_OK) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[[NSApp delegate] statusText] setStringValue:@"Error connecting..."];
+        });
+        return; // error
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[[NSApp delegate] statusText] setStringValue:@"Buffering..."];
+    });
+    while(!channel) {
+        result = system->playSound(FMOD_CHANNEL_FREE, sound, false, &channel);
+        usleep(100);
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[[NSApp delegate] statusText] setStringValue:@"Playing Scenemusic..."];
+    });
+    [threadDict setValue:[NSNumber numberWithBool:YES] forKey:@"isPlaying"];
+    
 }
 
 - (void)loadSongAndPlay:(NSURL*)file
@@ -158,7 +178,7 @@
     sound->getName(name, 100);
     NSString *songname = [NSString stringWithCString:name encoding:NSASCIIStringEncoding];
 
-    dispatch_async( dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         [[[NSApp delegate] songsTableView] addSong:file songName:songname];
     });
     [self readInfo];

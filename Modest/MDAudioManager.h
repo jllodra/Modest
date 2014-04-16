@@ -17,6 +17,7 @@
 
 - (void)setUp;
 - (void)loadSong:(NSURL*)file;
+- (void)loadScenemusicAndPlay;
 - (void)loadSongAndPlay:(NSURL*)file;
 - (void)play;
 - (void)stop;
