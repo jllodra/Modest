@@ -158,6 +158,7 @@
     });
     [threadDict setValue:[NSNumber numberWithBool:YES] forKey:@"isPlaying"];
     
+    [self readInfo];
 }
 
 - (void)loadSongAndPlay:(NSURL*)file
